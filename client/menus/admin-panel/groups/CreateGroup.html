@@ -1,0 +1,33 @@
+<template name="CreateGroup">
+	<div class="group">
+		<h2>Groups adjustment</h2>
+		{{#if enrollActive}}
+			{{#if InitialCreation}}
+				<div class="groupsAmount">
+					<h3>Groups amount (groups per teacher)</h3>
+					<form id="createGroup" class="createGroupForm">
+						{{#each eachTeacher}}
+							<div class="createNewGroup" id="{{id}}">
+								<h4>{{fullName}}</h4>
+								{{#each days}}
+									<input type="checkbox" id="{{currentTeacher}}{{this}}"/>
+									<label for="{{currentTeacher}}{{this}}">{{weekday}}</label>
+								{{/each}}
+							</div>
+						{{/each}}
+						<button type="submit">Create</button>
+					</form>
+				</div>
+			{{/if}}
+			<div class="establishedGroups">
+				{{> AddGroup}}
+				
+				{{#each group}}
+					{{> SingleGroup}}
+				{{/each}}
+			</div>
+		{{else}}
+			<h3> <i class="fa fa-info-circle"></i> Can't create groups while enrollmets are permitted</h3>
+		{{/if}}
+	</div>
+</template>

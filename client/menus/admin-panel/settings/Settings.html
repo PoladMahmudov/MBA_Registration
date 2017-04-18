@@ -1,0 +1,36 @@
+<template name="Settings">
+	<h1>Students' Activities</h1>
+	{{#if Template.subscriptionsReady}}
+		<section class="admin-buttons">
+			<button class="js-reg-permit {{#if $.Session.equals 'SettingsPage' 'RegPermit'}} active {{/if}}"><p>Registration</p></button>
+			<button class="js-stud-id {{#if $.Session.equals 'SettingsPage' 'StudId'}} active {{/if}}"><p>Students' IDs</p></button>
+			<button class="js-student-schedule {{#if $.Session.equals 'SettingsPage' 'StudentSchedule'}} active {{/if}}"><p>Semester</p></button>
+		</section>
+		<section class="studentsActivities">
+			{{#if $.Session.equals 'SettingsPage' 'StudId'}}
+				{{> SettingsStudentId}}
+			{{/if}}
+			{{#if $.Session.equals 'SettingsPage' 'RegPermit'}}
+				{{> SettingsRegistrPermission}}
+			{{/if}}
+			{{#if $.Session.equals 'SettingsPage' 'StudentSchedule'}}
+				{{> SettingsStudentSchedule}}
+			{{/if}}
+
+			{{#unless $.Session.get 'reg-permission'}}
+				<aside>
+					<i class="fa fa-info-circle reg-denied"></i>
+				</aside>
+			{{/unless}}
+		</section>
+	{{else}}
+		<div class='preloader'>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	{{/if}}
+</template>

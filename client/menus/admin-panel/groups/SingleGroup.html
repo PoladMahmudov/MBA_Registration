@@ -1,0 +1,26 @@
+<template name="SingleGroup">
+	<div class="singleGroup">
+		<h3><span>{{> editableText collection="groups" field="groupName"}}</span></h3>
+		<p>Subject: <span>{{courseInfo subject}}</span></p>
+		<p>Hours: <span>{{cHours}}h</span></p>
+		<p>Teacher: <span>{{teacher.fullName}}</span></p>
+		<p>Lessons' day: <span>{{weekDay day}}</span></p>
+		<p class="students">Students {{students.length}}</p>
+		<div class="list">
+			<ol>
+				{{#each students}}
+					<li class="js-showStudent">{{fullName}} <button class="remove-student"><i class="fa fa-close"></i></button></li>
+				{{/each}}
+			</ol>
+			{{#if EnrollStopped}}
+				<p class="input-user">{{> EasySearch}}</p>
+			{{/if}}
+		</div>
+		<p class="students">Remove this group</p>
+		<p class="btn"><button class="remove-group">Remove</button>
+		{{#if $not active}}
+			<button class="active-group">Activate</button>
+		{{/if}}
+		</p>
+	</div>
+</template>

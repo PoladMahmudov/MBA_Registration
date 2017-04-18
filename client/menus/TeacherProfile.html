@@ -1,0 +1,63 @@
+<template name="TeacherProfile">
+	{{#if Template.subscriptionsReady}}
+		{{#with profile}}
+			<h1>{{surname}} {{name}} {{patronimyc}}</h1>
+			<div class="user-profile">
+				{{#if isInRole 'admin'}}
+					<button class="btn-profile remove-user">Remove user</button>
+				{{/if}}
+				<section>
+					<p>
+						<p>Age: <span>{{age birthday}}</span></p>
+						<p><div class="editable-text-trigger">Phone:
+						{{#if isInRole 'admin'}}
+							{{> editableText collection="profile" field="contacts.phoneMob"}} <i class="fa fa-pencil"></i>
+						{{else}}
+							<span> {{contacts.phoneMob}}</span>
+						{{/if}}
+						</div></p>
+
+						{{#if contacts.Email}}
+							<div class="editable-text-trigger">Email:
+								{{#if isInRole 'admin'}}
+									{{> editableText collection="profile" field="contacts.Email"}} <i class="fa fa-pencil"></i>
+								{{else}}
+									<span> {{contacts.Email}}</span>
+								{{/if}}
+							</div>
+						{{/if}}
+					</p>
+				</section>
+				{{#if about}}
+					<section>
+						<p>
+							<p class="main">About</p>
+							<div>{{about}}</div>
+						</p>
+					</section>
+				{{/if}}
+
+				{{#if fields}}
+					<section>
+						<p><p class="main">Teaching</p>
+							<ul> 
+								{{#each fields}}
+									<li>{{cName}} ({{cNumber}})</li>
+								{{/each}}
+							</ul>
+						</p>
+					</section>
+				{{/if}}
+			</div>
+		{{/with}}
+	{{else}}
+		<div class='preloader'>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	{{/if}}
+</template>

@@ -1,0 +1,28 @@
+<template name="GroupStudents">
+	<div class="groupTable">
+		<div class="label">
+			<h2>{{groupName}}</h2>
+			<h3>Subject: <span>{{subjectLabel subject}}</span></h3>  <!-- operate this -->
+			<h4>Teacher: <span>{{teacher.fullName}}</span></h4>
+			<button class="open-table">
+				{{#if editMode}}
+					<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+				{{else}}
+					<i class="fa fa-angle-double-down" aria-hidden="true"></i>
+				{{/if}}
+			</button>
+		</div>
+		<div class="content {{#if editMode}} open {{/if}}">
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Score</th>
+				</tr>
+				{{#each students}}
+					{{> StudentRow}}
+				{{/each}}
+			</table>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,34 @@
+<template name="Footer">
+	<div class="labels">
+		<p class="title">Master of business administration
+			<a href="http://asoiu.edu.az" target="_blank">Azerbaijan state oil and industry university</a>
+		</p>
+		<p class="title-collaps">MBA
+			<a href="http://asoiu.edu.az" target="_blank">ASOIU</a>
+		</p>
+		<p class="creator">
+			mahmudovpolad@gmail.com
+		</p>
+	</div>
+
+	<div class="links">
+		{{#if isInRole 'admin'}}
+			<a href="/admin/users" class="{{isActiveRoute 'users'}}">Users</a>
+			<a href="/admin/curriculum" class="{{isActiveRoute 'Curriculum-admin'}}">Curriculum</a>
+			<a href="/admin/groups" class="{{isActiveRoute 'Groups'}}">Groups Management</a>
+			<a href="/admin/mark-students" class="{{isActiveRoute 'Mark students'}}">Mark students</a>
+			<a href="/admin/settings" class="{{isActiveRoute 'Settings'}}">Settings</a>
+		{{else}}
+			{{#if isInRole 'teacher'}}
+				<a href="/profile-teacher/{{id}}" class="{{isActiveRoute 'profile-teacher'}}">Profile</a>
+			{{else}}
+				<a href="/profile/{{id}}" class="{{isActiveRoute 'profile'}}">Profile</a>
+				<a href="/curriculum" class="{{isActiveRoute 'curriculum'}}">Curriculum</a>
+				<a href="/student-groups/{{id}}" class="{{isActiveRoute 'student-groups'}}">Groups</a>
+				{{#if temporary}}
+					<a href="/enroll" class="{{isActiveRoute 'enroll'}}">Enroll</a>
+				{{/if}}
+			{{/if}}
+		{{/if}}
+	</div>
+</template>

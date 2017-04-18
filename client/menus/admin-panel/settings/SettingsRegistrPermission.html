@@ -1,0 +1,24 @@
+<template name="SettingsRegistrPermission">
+	<section>
+		<p> <i class="fa fa-info-circle"></i> If you want to permit or deny the ability of new users for registartion change the permission status below. Notice, before permission actions the <a type="button" class="js-stud-id">students' IDs</a> must be added, otherwise in spite of prohibition new added IDs will be active for registration.</p>
+		<table class="regr-permition">
+			<tr>
+				<th>Permission status</th>
+			</tr>
+			<tr class="{{#if status}} permited {{else}} denied {{/if}}">
+				<td>
+					{{#if status}}
+						Permitted
+					{{else}}
+						Denied
+					{{/if}}
+					{{#if $.Session.get 'reg-permission' }}
+						<button class="deny js-regr-toggle">Deny</button>
+					{{else}}
+						<button class="permit js-regr-toggle">Permit</button>
+					{{/if}}
+				</td>
+			</tr>
+		</table>
+	</section>
+</template>

@@ -1,0 +1,54 @@
+<template name="AsideBar">
+	{{#if $.Session.get 'UserBar'}}
+		<h2>{{userName}}</h2>
+		{{#if tempTable}}
+			<table>
+				<tr>
+					<th class="mainLabel">Student's selects</th>
+					<th>Mon</th>
+					<th>Tue</th>
+					<th>Wed</th>
+					<th>Thu</th>
+					<th>Fri</th>
+				</tr>
+				{{#each tempTable}}
+					<tr>
+						<th>{{cNumber subject}}</th>
+						{{#each weekDay}}
+							<td class="{{#if show}} check {{/if}}">
+								{{#if show}}
+									<i class="fa fa-check"></i>
+								{{/if}}
+							</td>
+						{{/each}}
+					</tr>
+				{{/each}}
+			</table>
+		{{/if}}
+
+		{{#if groupTable}}
+			<table>
+				<tr>
+					<th class="mainLabel">Student's groups</th>
+					<th>Mon</th>
+					<th>Tue</th>
+					<th>Wed</th>
+					<th>Thu</th>
+					<th>Fri</th>
+				</tr>
+				{{#each groupTable}}
+					<tr>
+						<th>{{groupName}}</th>
+						{{#each weekDay}}
+							<td class="{{#if show}} check {{/if}}">
+								{{#if show}}
+									<i class="fa fa-check"></i>
+								{{/if}}
+							</td>
+						{{/each}}
+					</tr>
+				{{/each}}
+			</table>
+		{{/if}}
+	{{/if}}
+</template>

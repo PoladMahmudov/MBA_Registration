@@ -1,0 +1,27 @@
+<template name="MainLayout">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body class="MainLayoutBody">
+		<article class="__wrapper">
+			<header>
+				{{> Header}}
+			</header>
+			<main>
+				<article>
+					{{#if isInRole 'admin'}}
+						<aside>
+							{{> SideBar}}
+						</aside>
+					{{/if}}
+					<section class="main-part">
+						{{> Template.dynamic template=main}}
+					</section>
+				</article>
+			</main>
+		</article>
+		<footer>
+			{{> Footer}}
+		</footer>
+	</body>
+</template>

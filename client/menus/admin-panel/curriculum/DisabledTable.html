@@ -1,0 +1,39 @@
+<template name="DisabledTable">
+	<div class="disabledSubjects" id="disabledSubjects">
+			<h2 class="{{#if Opendisabled}} open {{/if}}">Disabled Subjects
+			{{#if Opendisabled}}  
+				<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+			{{else}}
+				<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+			{{/if}}
+			</h2>
+			<div class="table core capture {{#if Opendisabled}} open {{/if}}">
+			<h3><i class="fa fa-trash" aria-hidden="true"></i></h3>
+				<table>
+					<tr>
+						<th>Number</th>
+						<th>Label</th>
+						<th>Hours</th>
+						<th>Prerequisites</th>
+						<th>Manage</th>
+					</tr>
+					{{#each subject}}
+						<tr>
+							<td>{{cNumber}}</td>
+							<td>{{cName}}</td>
+							<td>{{cHours}} hours</td>
+							<td class="teach">
+								{{#each Prerequisites}}
+									<div>{{docs id}}</div>
+								{{/each}}
+							</td>
+							<td>
+								<button class="reestablish"><i class="fa fa-undo" aria-hidden="true"></i></button>
+								<button class="erase"><i class="fa fa-eraser" aria-hidden="true"></i></button>
+							</td>
+						</tr>
+					{{/each}}
+				</table>
+			</div>
+		</div>
+</template>

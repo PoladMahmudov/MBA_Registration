@@ -1,0 +1,75 @@
+<template name="Users">
+	<h1>Users</h1>
+	<div class="usersProfilesList">
+		{{#if Template.subscriptionsReady}}
+			<h2 class="open-studentList {{#if $.Session.get 'OpenStudentsList'}} open {{/if}}">Students
+				{{#if OpenMain}}
+					<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+				{{else}}
+					<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+				{{/if}}
+			</h2>
+			<div class="List {{#if $.Session.get 'OpenStudentsList'}} open {{/if}}">
+				<div class="searchBox">
+					{{> EasySearch.Input index=studentsIndex attributes=stinputAttributes}}<i class="fa fa-search" aria-hidden="true"></i>
+				</div>
+					{{#EasySearch.Each index=studentsIndex}}
+						<a class="profileList" href="/profile/{{userId}}">
+							<div class="content">
+								<h3>{{surname}} {{name}} {{patronimyc}} - {{studentId}}</h3>
+								<p>{{date createdAt}}</p>
+							</div>
+							{{#if $not admitted}}
+								<div class="status">
+									NEW
+								</div>
+							{{/if}}
+						</a>
+					{{/EasySearch.Each}}
+
+				{{> EasySearch.LoadMore index=studentsIndex}}
+
+				{{#EasySearch.IfNoResults index=studentsIndex}}
+					<div class="no-results">No results found!</div>
+				{{/EasySearch.IfNoResults}}
+			</div>
+
+			
+			<h2 class="open-teachersList {{#if $.Session.get 'OpenTeachersList'}} open {{/if}}">Teachers
+				{{#if OpenMain}}
+					<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+				{{else}}
+					<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+				{{/if}}
+			</h2>
+			<div class="List {{#if $.Session.get 'OpenTeachersList'}} open {{/if}}">
+				<div class="searchBox">
+					{{> EasySearch.Input index=teachersIndex attributes=tcinputAttributes}}<i class="fa fa-search" aria-hidden="true"></i>
+				</div>
+				{{#EasySearch.Each index=teachersIndex}}
+					<a class="profileList" href="/profile-teacher/{{userId}}">
+						<div class="content">
+							<h3>{{surname}} {{name}} {{patronimyc}}</h3>
+							<p>{{date createdAt}}</p>
+						</div>
+					</a>
+				{{/EasySearch.Each}}
+
+				{{> EasySearch.LoadMore index=teachersIndex}}
+
+				{{#EasySearch.IfNoResults index=teachersIndex}}
+					<div class="no-results">No results found!</div>
+				{{/EasySearch.IfNoResults}}
+			</div>
+		{{else}}
+			<div class='preloader'>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		{{/if}}
+	</div>
+</template>

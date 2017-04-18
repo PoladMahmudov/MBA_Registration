@@ -1,0 +1,17 @@
+<template name="Registration_2">
+	<section class="registration-2">
+		<h1>Main Registration</h1>
+		{{#if Template.subscriptionsReady}}
+				{{> ProfileForm}}
+		{{else}}
+				<div class='preloader'>`
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+		{{/if}}
+	</section>
+</template>

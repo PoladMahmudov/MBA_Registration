@@ -1,0 +1,67 @@
+<template name="SettingsStudentSchedule">
+	<div class="SettingsStudentSchedule">
+		<h2>Declare new semester</h2>
+		<p> <i class="fa fa-info-circle"></i> Declaration of new semester will give the opportunity for students enrollment to courses.</p>
+		<div class="currentSemester">
+			{{#if $not enrollExist}}
+				<div class="excludes">
+					<div>
+						<label for="disableCourse">Pick courses to exclude from this semestery</label>
+						<select id="disableCourse">
+							{{#each course}}
+								<option value="{{_id}}">{{cNumber}} - {{cName}}</option>
+							{{/each}}
+						</select>
+					</div>
+					<div>
+						{{#each excluded}}
+							<div class="remove-exclude">{{cNumber}} <i class="fa fa-close"></i> </div>
+						{{/each}}
+					</div>
+				</div>
+			{{/if}}
+			<p>
+				Established semester: 
+				<span class="{{#if semester}} activated {{/if}}">
+					{{#if semester}} {{semester}} {{else}} Semester isn't established {{/if}}
+				</span>
+			</p>
+			{{#if enrollExist}}
+				{{#if $not enrollToggle}}<p class="stopped">(Stopped)</p>{{/if}}
+			{{/if}}
+			{{#if $not enrollExist}}
+				<div class="submit-btn">
+					<button type="submit" class="declare-sem btn btn-primary">Declare new semester</button>
+				</div>
+			{{/if}}
+		</div>
+		{{#if enrollExist}}
+			<div class="remove-button">
+				<button class="btn-remove remove-semester">Remove current semester</button>
+				{{#if enrollExist}}
+					{{#if enrollToggle}}
+						<button class="btn-stop">Stop enrollments</button>
+					{{else}}
+						<button class="btn-stop continue">Continue enrollments</button>
+					{{/if}}
+				{{/if}}
+			</div>
+		{{/if}}
+		<div class="alert {{#if $.Session.get 'alert'}} open-alert {{/if}}"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Before "Declaration" you have to appoint teachers to the next subject(s):
+		{{#each emptyTeacherField}}
+			<div>
+				{{cNumber}}
+			</div>
+		{{/each}}
+		</div>
+	</div>
+</template>
+
+
+<!-- <div class="form">
+				<label for="new-semester">Select semester</label>
+				<select id="newSemester">
+				  <option value="fall">Fall</option>
+				  <option value="spring">Spring</option>
+				</select>
+			</div> -->

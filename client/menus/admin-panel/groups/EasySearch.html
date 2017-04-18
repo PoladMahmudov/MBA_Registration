@@ -1,0 +1,14 @@
+<template name="EasySearch">
+  <div class="focus">
+    {{> EasySearch.Input index=profilesIndex attributes=inputAttributes}}
+  </div>
+  <p class="namesDropdown {{#if showDropdown}} show {{/if}}">
+    {{#EasySearch.Each index=profilesIndex}}
+      <div class="js-pickStudent {{#if studentExist}} hide {{/if}}"> {{surname}} {{name}} {{patronimyc}}</div>
+    {{/EasySearch.Each}}
+
+    {{#EasySearch.IfNoResults index=profilesIndex}}
+      <div class="no-results">No results found!</div>
+    {{/EasySearch.IfNoResults}}
+  </p>
+</template>

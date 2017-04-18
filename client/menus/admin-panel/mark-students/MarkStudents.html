@@ -1,0 +1,19 @@
+<template name="MarkStudents">
+	<h1>Mark Students</h1>
+	<div class="studentsMarks">
+		{{#if Template.subscriptionsReady}}
+			{{#each group}}
+				{{> GroupStudents}}
+			{{/each}}
+		{{else}}
+			<div class='preloader'>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		{{/if}}
+	</div>
+</template>

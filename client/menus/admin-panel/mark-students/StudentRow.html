@@ -1,0 +1,19 @@
+<template name="StudentRow">
+	<tr>
+		<td>{{studentId id}}</td>
+		<td>{{fullName}}</td>
+		<td class="score">
+			{{#if editMode}}
+				<form id="confirmScore">
+					<input id="editScore" type="number" class="scoreInput" autofocus="true">
+				</form>
+			{{else}}
+				{{#if scoreExist}}
+					<p class="open-edit">{{scoreExist}}</p>
+				{{else}}
+					<p class="open-edit"> -- </p>
+				{{/if}}
+			{{/if}}
+		</td>
+	</tr>
+</template>

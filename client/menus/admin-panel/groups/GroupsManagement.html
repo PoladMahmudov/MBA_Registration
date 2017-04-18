@@ -1,0 +1,54 @@
+<template name="GroupsManagement">
+	<h1>Groups Management</h1>
+	<div class="groupsManagement">
+		{{#if Template.subscriptionsReady}}
+			{{#if enrollesStarted}}
+				<select id="selectCourse">
+					{{#each course}}
+						<option value="{{_id}}">{{cNumber}} - {{cName}}</option>
+					{{/each}}
+				</select>
+				{{#each course}}
+					{{> SingleCourse}}
+				{{/each}}
+			{{else}}
+				<h2> <i class="fa fa-info-circle"></i> Nothing to show. <a href="/admin/settings">Declare new semester</a></h2>
+			{{/if}}
+			<div class="allGroups">
+				<h2 class="btn-allGroups {{#if $.Session.get 'ShowAllGroups'}} open {{/if}}">All groups
+					{{#if $.Session.get 'ShowAllGroups'}}
+						<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+					{{else}}
+						<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+					{{/if}}
+				</h2>
+				{{#if $.Session.get 'ShowAllGroups'}}
+					{{#each groups}}
+						{{> SingleGroup}}
+					{{/each}}
+				{{/if}}
+			</div>
+			<aside class="currentUserBar {{#if $.Session.get 'UserBar'}} open {{/if}}">
+			 	<div class="angle wrap">
+				 	{{#if $.Session.get 'OpenBar'}}
+						<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+					{{else}}
+					 	<i class="fa fa-angle-double-left" aria-hidden="true"></i>
+					 {{/if}}
+			 	</div>
+				<div class="barBody wrap {{#if $.Session.get 'OpenBar'}} open {{/if}}">
+					{{>AsideBar}}
+				</div>
+			</aside>
+		{{else}}
+			<div class='preloader'>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		{{/if}}
+	</div>
+</template>

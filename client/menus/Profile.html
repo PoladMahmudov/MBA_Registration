@@ -1,0 +1,298 @@
+<template name="Profile">
+	{{#if Template.subscriptionsReady}}
+		{{#with profile}}
+			<h1>
+				{{#if editAllowed}}
+					{{> editableText collection="profile" field="surname"}}
+					{{> editableText collection="profile" field="name"}}
+					{{> editableText collection="profile" field="patronimyc"}}
+				{{else}}
+					{{surname}}
+					{{name}} 
+			 		{{patronimyc}}
+				{{/if}}
+			</h1>
+			<div class="user-profile">
+				{{#if isInRole 'admin'}}
+					<button class="btn-profile remove-user">Remove user</button>
+					{{#if admitted}}
+						<button class="btn-profile admit-user">Disconfirm profile</button>
+					{{else}}
+						<button class="btn-profile admit-user confirm">Confirm profile</button>
+					{{/if}}
+				{{/if}}
+					<section>
+						<p class="main">Main</p>
+						<p>Student ID: <span>{{studentId}}</span></p>
+						<p>Birthday:<span>
+							{{#if editAllowed}}
+								<span class="open-edit-birthday">{{dayOfBirth birthday}} <i class="fa fa-pencil"></i></span>
+								{{#if editUserBirthday}}
+									<form id="edit-user-birthday">
+										<input type="date" id="birthday" placeholder="YYYY-MM-DD" required>
+										<button type="submit">Submit</button>
+									</form>
+								{{/if}}
+							{{else}}
+								<span>{{dayOfBirth birthday}}</span>
+							{{/if}}
+						</span></p>
+						<p><span class="label">Passport data </span>
+							<div class="editable-text-trigger">Serial: 
+								{{#if editAllowed}}
+									{{> editableText collection="profile" field="passportData.serial"}} <i class="fa fa-pencil"></i>
+								{{else}}
+									<span>{{passportData.serial}}</span>
+								{{/if}}
+							</div>
+							<div class="editable-text-trigger">Number:
+								{{#if editAllowed}}
+									{{> editableText collection="profile" field="passportData.number"}}
+									<i class="fa fa-pencil"></i>
+								{{else}} 
+									<span>{{passportData.number}}</span>
+								{{/if}}
+							</div>
+						</p>
+						<p>Specialisation:
+							{{#if editAllowed}}
+								<span class="open-edit-specialisation">{{spec specialisation}} <i class="fa fa-pencil"></i></span>
+								{{#if editUserSpecialisation}}
+									<form id="edit-user-specialisation">
+										<select id="selectSpecialisation">
+											{{#each specialList}}
+												<option value="{{_id}}">{{name}}</option>
+											{{/each}}
+										</select>
+										<button type="submit">Submit</button>
+									</form>
+								{{/if}}
+							{{else}}
+								<span>{{spec specialisation}}</span>
+							{{/if}}
+						</p>
+						<p class="editable-text-trigger">Scored points for admission:
+							{{#if editAllowed}}
+								{{> editableText collection="profile" field="scoredPoints"}}
+								<i class="fa fa-pencil"></i>
+							{{else}}
+						 		<span>{{scoredPoints}}</span>
+						 	{{/if}}
+						 </p>
+						{{#if admitted}}<span class="confirmed">Confirmed</span>{{/if}}
+					</section>
+					<section>
+						<p class="main">Contacts</p>
+						<p class="editable-text-trigger">Address: 
+							{{#if editAllowed}}
+								{{> editableText collection="profile" field="contacts.address"}}
+								<i class="fa fa-pencil"></i>
+							{{else}}
+								<span>{{contacts.address}}</span>
+							{{/if}}
+						</p>
+						<p>Phone number(s)
+							{{#if editAllowed}}
+								<div class="editable-text-trigger">{{> editableText collection="profile" field="contacts.phoneMob"}}
+								<i class="fa fa-pencil"></i>
+								</div>
+								<div class="editable-text-trigger">{{> editableText collection="profile" field="contacts.phoneTel"}}
+								<i class="fa fa-pencil"></i>
+								</div>
+							{{else}}
+								<div><span>{{contacts.phoneMob}}</span></div>
+								<div><span>{{contacts.phoneTel}}</span></div>
+							{{/if}}
+						</p>
+						{{#if admitted}}<span class="confirmed">Confirmed</span>{{/if}}
+					</section>
+					<section>
+						<p class="main">Parents info</p>
+							<p><span class="label">Mother</span>
+							<div class="editable-text-trigger">Full name:
+								{{#if editAllowed}}
+									{{> editableText collection="profile" field="parents.mother.fullName"}}
+									<i class="fa fa-pencil"></i>
+								{{else}}
+							 		<span>{{parents.mother.fullName}}</span>
+								{{/if}}
+							 </div>
+							<div>Birthday: 
+								{{#if editAllowed}}
+									<span class="open-edit-mother-birthday">{{dayOfBirth parents.mother.birthday}} <i class="fa fa-pencil"></i></span>
+									{{#if editUserMotherBirthday}}
+										<form id="edit-user-mother-birthday">
+											<input type="date" id="birthday" placeholder="YYYY-MM-DD" required>
+											<button type="submit">Submit</button>
+										</form>
+									{{/if}}
+								{{else}}
+									<span>{{dayOfBirth parents.mother.birthday}}</span>
+								{{/if}}
+							</div>
+							{{#if editAllowed}}
+								<div class="editable-text-trigger">Workplace: {{> editableText collection="profile" field="parents.mother.workPlace"}}
+									<i class="fa fa-pencil"></i>
+								</div>
+							{{else}}
+								{{#if $neq parents.mother.workPlace 'None'}}
+									<div><span>{{parents.mother.workPlace}}</span></div>
+								{{/if}}
+							{{/if}}
+							{{#if editAllowed}}
+								<div class="editable-text-trigger">Contacts: {{> editableText collection="profile" field="parents.mother.contacts"}}
+									<i class="fa fa-pencil"></i>
+								</div>
+							{{else}}
+								{{#if $neq parents.mother.contacts 'None'}}
+									<div><span>{{parents.mother.contacts}}</span></div>
+								{{/if}}
+							{{/if}}
+
+						</p>
+						<p><span class="label">Father</span>
+							<div class="editable-text-trigger">Full name:
+								{{#if editAllowed}}
+									{{> editableText collection="profile" field="parents.father.fullName"}}
+									<i class="fa fa-pencil"></i>
+								{{else}}
+							 		<span>{{parents.father.fullName}}</span>
+								{{/if}}
+							 </div>
+							<div>Birthday:
+								{{#if editAllowed}}
+									<span class="open-edit-father-birthday">{{dayOfBirth parents.father.birthday}} <i class="fa fa-pencil"></i></span>
+									{{#if editUserFatherBirthday}}
+										<form id="edit-user-father-birthday">
+											<input type="date" id="birthday" placeholder="YYYY-MM-DD" required>
+											<button type="submit">Submit</button>
+										</form>
+									{{/if}}
+								{{else}}
+									<span>{{dayOfBirth parents.father.birthday}}</span>
+								{{/if}}
+							</div>
+							{{#if editAllowed}}
+								<div class="editable-text-trigger">Workplace: {{> editableText collection="profile" field="parents.father.workPlace"}}
+								<i class="fa fa-pencil"></i>
+								</div>
+							{{else}}
+								{{#if $neq parents.father.workPlace 'None'}}
+									<div><span>{{parents.father.workPlace}}</span></div>
+								{{/if}}
+							{{/if}}
+							{{#if editAllowed}}
+								<div class="editable-text-trigger">Contacts: {{> editableText collection="profile" field="parents.father.contacts"}}
+								<i class="fa fa-pencil"></i>
+								</div>
+							{{else}}
+								{{#if $neq parents.father.contacts 'None'}}
+									<div><span>{{parents.father.contacts}}</span></div>
+								{{/if}}
+							{{/if}}
+						</p>
+						{{#if admitted}}<span class="confirmed">Confirmed</span>{{/if}}
+					</section>
+					<section>
+						<p class="main">Education</p>
+						{{#each graduated}}
+							<p>
+							<div>University: <span>{{university}}</span></div>
+							<div>Specialisation:<span> {{specialisation}}</span></div>
+							<div>Diploma ID:<span> {{diplomaId}}</span></div>
+							</p>
+						{{/each}}
+						{{#if admitted}}<span class="confirmed">Confirmed</span>{{/if}}
+					</section>
+					<section>
+						<p class="main">Additional Info</p>
+						<p>
+							Groups: <span><a href="/student-groups/{{userId}}">View List</a></span>
+						</p>
+						<p>
+							{{#if editAllowed}}
+								<div class="editable-text-trigger">Workplace: {{> editableText collection="profile" field="workPlace"}}
+									<i class="fa fa-pencil"></i>
+								</div>
+							{{else}}
+								{{#if $neq workPlace 'None'}}
+									<div><span>{{workPlace}}</span></div>
+								{{/if}}
+							{{/if}}
+						</p>
+							<p>
+								<div>Social status: 
+									{{#if editAllowed}}
+										{{#if $neq socialStatus 'None'}}
+											<span class="open-edit-status">{{socialStatus}} <i class="fa fa-pencil"></i></span>
+											{{#if editUserStatus}}
+												<form id="edit-user-status">
+													<select id="selectStatus" required>
+														<option value="None">None</option>
+														<option value="Refugee">Refugee</option>
+														<option value="The family of disabled">The family of disabled</option>
+													</select>
+													<button type="submit">Submit</button>
+												</form>
+											{{/if}}
+										{{else}}
+											<form id="edit-user-status">
+												<select id="selectStatus" required>
+													<option value="None">None</option>
+													<option value="Refugee">Refugee</option>
+													<option value="The family of disabled">The family of disabled</option>
+												</select>
+												<button type="submit">Submit</button>
+											</form>
+										{{/if}}
+									{{else}}
+										<span>{{socialStatus}}</span>
+									{{/if}}
+								</div>
+							</p>
+						{{#if admitted}}<span class="confirmed">Confirmed</span>{{/if}}
+					</section>
+				</div>
+			{{#if isInRole 'admin'}}
+				<aside class="userProfileEdit">
+					<table>
+						<tr>
+							<th>Course</th>
+							<th>Score</th>
+							<th></th>
+						</tr>
+						{{#each subjects}}
+							<tr>
+								<td>{{cLabel id}}</td>
+								<td class="score">{{score}}</td>
+								<td>
+									<button class="delete-course"><i class="fa fa-close" id="{{../_id}}"></i></button>
+								</td>
+							</tr>
+						{{/each}}
+						<form id="addAccomplishment" class="tr">
+							<td>
+								<select id="selectCourse" required>
+									{{#each course}}
+										<option value="{{_id}}">{{cNumber}} - {{cName}}</option>
+									{{/each}}
+								</select>
+							</td>
+							<td><input id="score" type="number" min="0" max="100" required></td>
+							<td><button type="submit"><i class="fa fa-plus"></i></button></td>
+						</form>
+					</table>
+				</aside>
+			{{/if}}
+		{{/with}}
+	{{else}}
+		<div class='preloader'>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	{{/if}}
+</template>

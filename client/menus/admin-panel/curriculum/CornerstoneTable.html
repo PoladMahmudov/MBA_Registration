@@ -1,0 +1,38 @@
+<template name="CornerstoneTable">
+	{{#if editMode}}
+		<tr class="update-area">
+			<td colspan="6">
+			<button class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+			<h3>{{cName}}</h3>
+			{{#autoForm schema="Cornerstone" collection="Courses" id="updateSubject" type="update" doc=this}}
+				{{> afQuickField name="cNumber"}}
+				{{> afQuickField name="cName"}}
+				{{> afQuickField name="cHours"}}
+				{{> afQuickField name="teachers"}}
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-submit" disabled="{{disableButtons}}">Submit</button>
+				</div>
+			{{/autoForm}}
+			</td>
+		</tr>
+	{{else}}
+		<tr>
+			<td>{{cNumber}}</td>
+			<td>{{cName}}</td>
+			<td>{{cHours}} hours</td>
+			<td>None</td>
+			<td class="teach">
+				{{#each teachers}}
+					<div>
+						{{name id}}
+						({{week days}})
+					</div>
+				{{/each}}
+			</td>
+			<td>
+				<button class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+				<button class="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+			</td>
+		</tr>
+	{{/if}}
+</template>

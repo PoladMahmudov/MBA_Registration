@@ -1,0 +1,88 @@
+<template name="Enroll">
+	<h1>Enrollments for {{halfYear}}</h1>
+	<section class="stud-enroll">
+		{{#if Template.subscriptionsReady}}
+			{{#each course}}
+				<div class="courses">
+					<div class="course-info">
+						<p class="number"><span>{{Number subject}}</span></p>
+						<p class="name"><i class="fa fa-chevron-right" aria-hidden="true"></i> {{Name subject}}</p>
+						<p>{{Hours subject}} hours</p>
+						<p>
+							<div class="table">
+								<table>
+									<tr>
+										<th>Select teacher & day</th>
+										<th>Mon</th>
+										<th>Tue</th>
+										<th>Wed</th>
+										<th>Thu</th>
+										<th>Fri</th>
+									</tr>
+									{{#each eachTeacher}}
+										<tr>
+											<th>{{fullName}}</th>
+											{{#each day}}
+												<td>
+													<button class="js-btn {{#if disabled}} hide-btn {{/if}} {{#if active}} active {{/if}}" id="{{subjectId}}">{{enrollesCount subjectId}}</button>
+												</td>
+											{{/each}}
+										</tr>
+									{{/each}}
+								</table>
+							</div>
+						</p>
+						<p class="group">{{Group subject}}</p>
+					</div>
+				</div>
+			{{/each}}
+			{{#if $.Session.get 'selectedObj'}}
+				<aside class="confirmationBar {{#if $.Session.get 'openBar'}} open {{/if}}">
+				<h2 class="open-bar">Enrollments Confirmation</h2>
+					<div class="aside-table {{#if $.Session.get 'openBar'}} open {{/if}}">
+						<table>
+							<tr>
+								<th>Courses / days</th>
+								<th>Mon</th>
+								<th>Tue</th>
+								<th>Wed</th>
+								<th>Thu</th>
+								<th>Fri</th>
+							</tr>
+							{{#each enrollment}}
+								<tr>
+									<th>{{courseName subject}}</th>
+									{{#each weekDay}}
+										<td class="{{#if show}} check {{/if}}">
+											{{#if show}}
+												<i class="fa fa-check"></i>
+											{{/if}}
+										</td>
+									{{/each}}
+								</tr>
+							{{/each}}
+						</table>
+						<div class="confirm-btn">
+							{{#if $not stoppedEnroll}}
+								<button class="js-confirm">confirm</button>
+							{{/if}}
+							<div class="confirmation-info {{#if editMode}} show {{/if}}">Successfully confirmed</div>
+							{{#if stoppedEnroll}}
+								<div class="stopped-enroll">Enrollments stopped</div>
+							{{/if}}
+						</div>
+					</div>
+				</aside>
+			{{/if}}
+		{{else}}
+			<div class='preloader'>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		{{/if}}
+	</section>
+</template>

@@ -1,0 +1,56 @@
+<template name="SettingsStudentId">
+	<button class="js-addIdForm"><i class="fa fa-plus" aria-hidden="true"></i> Add new ID</button>
+	<div class="id-form {{#if $.Session.get 'showAddIdForm'}} open {{else}} close {{/if}}">
+		{{> quickForm schema="NewStudentId" id="AddNewId" type="method" meteormethod="SettingsList"}}
+	</div>
+	<div class="table">
+		{{#if Template.subscriptionsReady}}
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Added</th>
+						<th>Owner</th>
+						<th>Status</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each registrationId}}
+						<tr>
+							<td>{{studentId}}</td>
+							<td>{{createdOn}}</td>
+							<td>{{idFor}}</td>
+							<td>
+								{{#if $eq activated true}} 
+								<span class="activated">Activated </span>
+								{{/if}}
+								{{#if $not activated}}
+								<span>Not Activated</span> 
+								{{/if}}
+								{{#if $eq activated 'delay'}}
+								<span class="delay">Delayed</span>
+								{{/if}}
+							</td>
+							<td><button class="js-delete-id"><i class="fa fa-close"></i></button></td>
+						</tr>
+					{{/each}}
+				</tbody>
+				<tfoot>
+					<!-- <tr>
+							<i class="fa fa-plus" aria-hidden="true"></i>
+					</tr> -->
+				</tfoot>
+			</table>
+		{{else}}
+			<div class='preloader'>
+			  <span></span>
+			  <span></span>
+			  <span></span>
+			  <span></span>
+			  <span></span>
+			  <span></span>
+			</div>
+		{{/if}}
+	</div>
+</template>

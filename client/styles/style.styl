@@ -1,0 +1,2095 @@
+@import 'https://fonts.googleapis.com/css?family=Nunito|Questrial|Lobster|Slabo+27px'
+
+
+normalize-css()
+
+shadow-level(l = 1)
+    if l == -1
+        box-shadow: inset -2px 7px 9px -7px rgba(0,0,0,0.7);
+    if l == 0
+        box-shadow: none;
+    if l == 1
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    if l == 2
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    if l == 3
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    if l == 4
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    if l == 5
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    if l == 6
+        box-shadow: -3px -3px 10px rgba(0,0,0,0.30), 4px -3px 10px rgba(0,0,0,0.22);
+ 
+// Common Transition
+trans($sec = 0.3s)
+    transition: all $sec ease
+
+// Grid
+$xsmall = 340px
+$small = 500px
+$med = 700px
+$large = 960px
+$wide = 1200px
+
+// Colors
+black = #222
+grey = #D8D8D8
+light-grey = #EEE
+purp = #524763
+dark-purp = #373142
+red = #E54B4B
+teal = #82D8D8
+dark-teal = #66A6A6
+green = #53E36D
+dark-blue = #043a58
+blue = #16528E
+bright-blue = #2f92a5
+maroon = #6A2140
+light-red = #CA5765
+pink = #CF256D
+orange = #E8846B
+ 
+z = {
+    neg: -7,
+    lowest: 1,
+    low: 4,
+    mid: 5,
+    video: 6,
+    header: 7,
+    nav: 8,
+    mini: 9,
+    modal: 10,
+    highest: 11
+}
+
+
+// Pallet
+$first = #F2E6CE
+$second = #8AB29F
+$third = #8E001C
+$fourth = #593325
+$fifth = #424242
+$six = #D3CEAA
+$seven = #325A66
+$eight = #2f92a5
+
+// fonts
+$title = 'Nunito', sans-serif
+$superTitle = 'Lobster', cursive
+$text = 'Questrial', sans-serif
+$header = 'Slabo+27px', serif
+
+
+$side-nav = 16%
+$side-nav-large = 18%
+
+h1
+    font-size 3em
+    text-align center
+    font-family $superTitle
+    color dark-blue
+    letter-spacing 3px
+    word-spacing 2px
+    
+
+
+html
+    box-sizing border-box
+
+*, *:before, *:after
+    box-sizing: inherit
+    
+body
+    background $first
+    
+.__wrapper
+    min-height 90vh
+
+
+label
+    font-family $label
+    display block
+    margin-top 15px
+    margin-bottom 5px
+    font-size 1.1em
+input
+    font-family $text
+    height 35px
+    border-radius 3px
+    padding 5px
+select
+    font-family $text
+    height 35px
+a
+    text-decoration none
+    color #0054a9
+    &:focus
+        padding 2px
+main
+    margin-top 70px
+
+table
+    width 90%
+    margin 5%
+    padding 5%
+    text-align center
+    th
+        background $fifth
+        color $first
+        padding 5px
+    td
+        padding 5px
+        opacity .8
+        button
+            background transparent
+            shadow-level(-1)
+            border @background
+            color $fifth + 50
+            &:hover
+                background red
+                shadow-level(2)
+                color white
+                trans()
+        span
+            background gray - 50
+            color white
+            border-radius 3px
+            padding 2px
+            &.activated
+                background #86d040
+                color black
+            &.delay
+                background orange
+        +below($small)
+            button
+                display block
+                float none
+    tr
+        border-left 1px solid $fifth 
+        border-right 1px solid $fifth
+        &:last-child
+            border-bottom 1px solid $fifth
+        &:nth-child(even)
+            background #83caed
+        &:hover
+            background $first
+            opacity 1
+            trans()
+    
+
+header
+    z-index 3
+    font-family $header
+    padding 0 50px
+    display block
+    position absolute
+    left 0
+    top 0
+    height 54px
+    width 100%
+    background #424242
+    border 1px solid @background
+    shadow-level(2)
+    h2
+        text-align center
+        display block
+        font-size 1.1em
+        a
+            margin 0 12px
+            color white - 20
+            padding-bottom 15px
+            text-decoration none
+            &.active
+                padding-bottom 15px
+                border-bottom 4px solid blue + 100
+            &:hover
+                padding-bottom 15px
+                border-bottom 4px solid orange //#21786C + 50
+            &:focus
+                padding-bottom 15px
+    .js-logOut
+        padding 3px
+    +below($med)
+        img
+            margin 16px 0
+    +above($large)
+        .js-logOut
+            i:after
+                content 'Log Out'
+    img
+        width 100px
+        float left
+    
+    button
+        float right
+        background bright-blue
+        text-transform uppercase
+        font-size .9em
+        color white
+        padding 3px
+        border 1px solid @background 
+        border-radius 3px
+        trans(.3s)
+        &:hover
+            background bright-blue - 100
+            shadow-level(1)
+    span
+        color $first
+        font-family $title 
+    nav
+        +below($xsmall)
+            img
+                display none
+        h2
+            display none
+        button.toggle-nav
+            margin 10px 5px
+            width 30px
+            font-size 1.2em
+            background bright-blue - 100
+            color white
+            border 1px solid @background
+            &:hover
+                background bright-blue
+        +above($med)
+            button.toggle-nav
+                display none
+            h2
+                display block
+            .collapsed
+                display none
+        .collapsed
+            +below($large)
+                &:before
+                    content ''
+                    position absolute
+                    fixed top right
+                    width 100%
+                    height 100%
+                    background $fifth
+                h2
+                    font-size 2.1em
+                    font-family $text
+                    text-align right
+                    position absolute
+                    display block
+                    z-index 3
+                    fixed right top
+                    margin 20px
+                a, button
+                    trans(.3s)
+                    display block
+                    clear both
+                    shadow-level(0)
+                    border none
+                    background none
+                    margin 10px 0
+                    animation edit-open .5s
+                a
+                    padding 0
+                    &:hover
+                        color $six
+                    &.active
+                        color blue + 50
+                .js-logOut
+                    color $third + 100      
+
+// END OF HEADER
+
+.side-nav
+    display block
+    background transparent
+    shadow-level(2)
+    text-align center
+    a
+        color $fifth
+        &:hover
+            color $third
+        &.active
+            color blue
+        span
+            font-size 1em
+            display none
+            opacity 0
+        i
+            font-size 1.5em
+            padding 2px
+            margin 1px 5px
+            vertical-align middle
+    +above($med)
+        z-index 2
+        position absolute
+        fixed left top
+        height 100%
+        width 60px
+        &:hover
+            background rgba(255, 255, 255, 0.7)
+            width 220px
+            text-align left
+            shadow-level(3)
+            span
+                display inline-block
+                opacity 1
+        a
+            display block
+            margin-top 20px
+            padding 10px
+            &.active
+                background blue
+                color white
+            &:hover
+                background $third
+                color white
+                border-right 5px solid $eight + 50
+                trans(.2s)
+            &:first-child
+                margin-top 100px
+                
+footer
+    display block
+    background $fifth
+    width 100%
+    margin-top 5%
+    min-height 10vh
+    div
+        display block
+        text-align center
+        padding 5% 1%
+        p
+            &.title
+                display none
+                text-transform uppercase
+                font-size 2em
+                font-family $text
+                color gray
+            a
+                display block
+                font-size 1em
+                color black
+                font-weight 600
+            &.creator
+                color gray
+        &.title-collaps
+            font-size 2em
+            font-family $text
+            color gray
+        &.links
+            a
+                display block
+                color white
+                padding 5px
+                &.active
+                    color gray - 30
+                &:hover
+                    color red
+                    trans(.5s)
+    +above($small)
+        border-top 50px solid black
+        display table
+        div
+            display table-cell
+            vertical-align middle
+            width 30%
+            p
+                &.title
+                    display table-cell
+                    width 70%
+                &.title-collaps
+                    display none
+            &.labels
+                width 70%
+            &.links
+                background red - 120
+                
+            
+
+.imgBody:before
+    content url('adnsu-bina-1.jpg')
+    z-index -2
+    width 100%
+    fixed top left
+    
+
+.at-form:before
+    +above($large)
+        content ''
+        z-index -1
+        height 100%
+        max-width 100%
+        background-color rgba($fourth, 0.65) //rgba(37, 28, 13, 0.65)
+        margin 40px auto
+        fixed bottom left
+        width 45%
+        margin 0
+
+.at-form
+    display inline-block
+    width 90%
+    margin 4.9%
+    padding 5%
+    border-radius 5px
+    background rgba(255, 254, 254, 1)
+    shadow-level(3)
+    +above($small)
+        margin 5%
+        width 90%
+        background rgba(255, 254, 254, 0.90)
+        shadow-level(1)
+    +above($med)
+        background rgba(255, 254, 254, 0.80)
+        margin 5% 10%
+        width 80%
+        shadow-level(0)
+    +above($large)
+        margin 3% 6%
+        padding 2% 3%
+        width 30%
+    .at-title
+        font-family $superTitle
+        font-size 1.6em
+        color #043a58
+    .at-input
+        label
+            display block
+            margin-top 15px
+            margin-bottom 5px
+            font-family $text
+            font-size 1.1em
+        input
+            width 100%
+            height 35px
+            border-radius 3px
+            border none
+            padding 5px
+            +below($med)
+                border 1px solid @background - 50
+    .has-error
+        span
+            color red - 10
+            margin 5px 0
+    .has-success
+        span
+            color green - 50
+            margin 5px 0
+    .at-signup-link
+        +above($small)
+            position absolute
+            //margin-left: 98px;
+            margin-left: 160px;
+            margin-top: -77px;
+        a
+            background transparent
+            display inline-block
+            color #2f92a5 - 50
+            padding 10px
+            border 2px solid #2f92a5 
+            border-radius 3px
+            margin 10px 0px
+            &:hover
+                color white
+                background #2f92a5 - 50
+                shadow-level(1)
+    .at-error
+        color red
+        margin 5px 0
+    a
+        text-decoration none
+        color #0054a9
+    button
+        background #2f92a5
+        color white
+        padding 10px
+        border 1px solid @background 
+        border-radius 3px
+        margin 10px 0px
+        width 135px
+        &:hover
+            background #2f92a5 - 50
+            shadow-level(1)
+    i.reg-permited
+        cursor pointer
+        font-size 1.2em
+        color blue
+        &:hover:after
+            content 'Registration is permited'
+            font-family $text
+            padding 5px
+            border-radius 3px
+            margin-left 5px
+            width 90%
+            color white
+            background blue
+            animation .3s form-open
+    i.reg-denied
+        cursor pointer
+        font-size 1.2em
+        color red
+        &:hover:after
+            content "Registration isn't available now"
+            font-family $text
+            padding 5px
+            border-radius 3px
+            margin-left 5px
+            width 100%
+            color white
+            background red
+            animation .3s form-open
+
+.registration-2
+    h1
+        font-family $superTitle
+        text-align center
+        letter-spacing 3px
+        color dark-blue
+        font-size 3em
+        +below($small)
+            font-size 2em
+        +below($xsmall)
+            font-size 1.2em
+
+#insertAdditionalUserInfo
+    width 80%
+    margin 7%
+    padding 2%
+    background white
+    .form-group
+        margin 10px 0
+        input
+            display block
+            width 100%
+            border 1px solid $fifth + 100
+            &:hover
+                border 1.3px solid $teal
+                trans(.8s)
+        label
+            display block
+            color bright-blue - 50
+        select
+            width 100%
+            border 1.3px solid $fifth + 100
+        button
+            background bright-blue
+            color white
+            padding 10px
+            border 1px solid @background 
+            border-radius 3px
+            min-width 30%
+            margin-left 35%
+            margin-top 20px
+            margin-bottom 10px
+            &:hover
+                background bright-blue - 100
+                shadow-level(1)
+        textarea
+            margin-top 10px
+            width 100%
+            height 100px
+            clear both
+    .panel.panel-default
+        .panel-heading
+            margin-top 12%
+            text-align center
+            font-family $title
+            color white
+            border-radius 3px
+            font-size 1.2em
+            background #e59046
+        .panel-body
+            padding 1%
+            span.help-block
+                color red
+                display block
+            .panel.panel-default
+                +above($large)
+                    display inline-block
+                    width 45%
+                    margin 1% 2%
+                .panel-heading
+                    margin-top 0
+                    padding 0
+                    background none
+                    color #e59046 - 30
+                    border-bottom 2px solid #e59046 - 50
+    .form-group.has-error
+        span.help-block
+            trans(1s)
+            margin 3px 0
+            color red
+    ul.list-group
+        list-style none
+        li
+            margin-top 10px
+    .autoform-remove-item.btn
+        background gray + 50
+        color gray - 50
+        box-shadow none
+        border none
+        border-radius 50%
+        font-size 1em
+        height: 25px
+        width: 25px
+        text-align: center
+        display: block
+        padding: 0
+     
+    .autoform-add-item.btn
+        color gray - 50
+        width 100%
+        border-radius none
+        border 0
+        background gray + 50
+        height 25px
+        
+    .autoform-remove-item-wrap
+        vertical-align middle
+
+    +above($small)
+        width 80%
+        margin 40px auto 90px auto
+        border 1px solid transparent
+        shadow-level(1)
+    +above($med)
+        width 70%
+        margin 30px auto 90px auto
+        border 1px solid transparent
+        shadow-level(2)
+    +above($large)
+        width 55%
+        margin 30px auto 90px auto
+        border 1px solid transparent
+        shadow-level(3)
+
+.admin-buttons
+    text-align center
+    margin-bottom 0
+    margin-left 0
+    margin-right 0
+    font-weight 600
+    color dark-blue
+    button
+        width 80%
+        font-family $label
+        background transparent
+        border @background
+        shadow-level(-1)
+        &.active, &:focus
+            background #a1f7f9
+            border @background
+            shadow-level(2)
+            trans()
+        &:hover
+            background #a1f7f9
+            shadow-level(2)
+            border-radius 5px
+            trans()
+        +above($med)
+            width (69.5/3)%
+            min-height 70px
+            shadow-level(-1)
+        +above($large)
+            width (54.5/3)%
+            shadow-level(-1)
+
+.insertTeacherInfo
+    .teacher-form
+        @extend #insertAdditionalUserInfo
+
+.studentsActivities
+    @extend #insertAdditionalUserInfo
+    margin-top 0
+    .id-form.close
+        display none
+        padding 10px
+        opacity 0
+    .id-form.open
+        background rgba($first, .40)
+        border-radius 10px
+        padding 2%
+        display block
+        opacity 1
+        border-bottom 2px dashed gray
+        margin-bottom 10%
+        animation form-open .5s
+    button.js-addIdForm
+        background #3ebb8f
+        color white
+        padding 10px
+        border 1px solid @background 
+        border-radius 3px
+        &:hover
+            background #3ebb8f + 100
+            color black
+            shadow-level(2)
+    +below($small)
+        .table
+            overflow-x scroll
+    +below($med)
+        margin 0 10%
+    i.reg-denied
+        cursor pointer
+        font-size 1.2em
+        color red
+        &:hover:after
+            font-family $text
+            content "Registration is denied"
+            padding 5px
+            border-radius 3px
+            margin-left 5px
+            width 100%
+            color white
+            background red
+            animation .3s form-open
+
+.curriculumMenu
+    @extend .studentsActivities
+    form
+        width 80%
+        margin 0 9%
+    button.edit
+        &:hover
+            background yellow
+    button.reestablish
+        &:hover
+            background green - 50
+    td.teach div
+        border-bottom 1px solid blue + 50
+        padding 2px
+        &:last-child
+            border none
+    h3
+        span
+            background none
+            color $fifth
+        input
+            border-radius 20px
+            padding 5px
+            color blue + 50
+    .panel.panel-default
+        &:nth-child(2)
+            margin-top 30px
+        .panel-heading
+            margin-top 15px
+            background transparent
+            color blue
+            h3.panel-title
+                display none
+        button.autoform-add-item
+            width 26px
+            border-radius 50%
+            display block
+            shadow-level(0)
+    .form-group
+        select.select-day
+            height 102px
+    .elective-buttons
+        @extend .admin-buttons
+        button
+            margin 10px 2px
+            shadow-level(2)
+            border-radius  15px 
+            background  rgba(0, 0, 0, 0.65)
+            color white
+            &:hover
+                color dark-blue
+            +below($med)
+                height 30px
+    h2
+        width 100%
+        margin-top 5%
+        padding 2%
+        font-family $title
+        color white
+        text-shadow 0 0 10px $fifth, 1px 1px 10px blue
+        display inline-block
+        border none
+        cursor pointer
+        shadow-level(5)
+        &.open
+            trans(.3s)
+            shadow-level(0)
+            background red - 100
+        &:hover
+            trans(.3s)
+            shadow-level(2)
+            background red - 100
+        i
+            float right
+            text-shadow none
+        &:hover i
+            float none
+            animation i-open .2s
+        +below($large)
+            background red + 100
+        +above($large)
+            width 50%
+    .core
+        background white
+        margin-top 10%
+        padding 2%
+        shadow-level(2)
+        h3
+            text-align center
+            font-family $title
+            margin 0 8%
+            border-radius 20px
+            padding 3px
+            background orange
+            color white
+            font-size 1.3em
+            shadow-level(2)
+        +below($large)
+            shadow-level(0)
+    table
+        margin-bottom 0
+        td
+            border 1px solid $fifth
+            li
+                list-style none
+        .update-area
+            background rgba($first, 0.36)
+            label
+                color $fifth
+                float left
+            h3
+                background none
+                shadow-level(0)
+                color orange
+            span
+                background none
+            .form-group
+                button.btn-primary
+                    width 80%
+                    margin 20px 9%
+                    clear both
+            button.edit
+                float right
+            animation .3s form-open
+    .table-button
+        margin 0px 5%
+        button.btn-table
+            background gray + 50
+            width 100%
+            height 35px
+            border @background
+            shadow-level(1)
+        .panel.panel-default
+            .panel-heading
+                margin-top 15px
+                background transparent
+                color blue
+            button.autoform-add-item
+                width 26px
+                border-radius 50%
+    .edit, .delete, .reestablish, .erase
+        width 35px
+        height 35px
+        margin-right 2px
+    .capture
+        display none
+        &.open
+            display block
+            animation edit-open 1s
+    .disabledSubjects
+        h3
+            display block
+            background none
+            color red
+            font-size 3em
+            text-shadow 0 0 5px $fifth
+            shadow-level(0)
+    +below($large)
+        .table
+            overflow-x scroll
+        background transparent
+    +below($med)
+        width 92%
+        margin 0 4%
+    +below($small)
+        width 100%
+        margin 0
+    +above($med)
+        width 80%
+    +above($large)
+        width 89%
+        margin-left 9%
+        background transparent
+        shadow-level(0)
+
+
+
+.userSchedule
+    @extend #insertAdditionalUserInfo
+    width 90%
+    margin 5%
+    +below($med)
+        width 100%
+        margin 0
+    table
+        tr
+            height 50px
+            border transparent
+            &:nth-child(even)
+                background gray + 50
+            &:hover
+                background gray - 50
+                color white
+            &:hover td
+                border-right 1px solid gray + 50
+                &:last-child
+                    background red
+            &.completed
+                background blue + 100
+                opacity .5
+                &:hover
+                    opacity 1
+                    color black
+                &:hover td:last-child
+                    color white
+                    background green - 100
+            div
+                &.notcompleted
+                    display none
+                &.completed
+                    display inline-block
+                    padding 4px
+                    margin 2px
+                    background green
+                    color black
+                    border-radius 10px
+                    border-bottom none
+                    shadow-level(2)
+        .coreLabel th
+            font-family $title
+            font-size 1.2em
+            background $seven
+            color white
+            height 60px
+            span.special
+                font-size 1.1em
+                text-shadow 0 0 15px black
+                &:before
+                    content 'MBA concentration: '
+                    font-size .9em
+                    font-style italic
+                    text-shadow none
+        td div
+            border-bottom 1px solid rgba(white)
+            padding 2px
+            &:last-child
+                border none
+    +below($med)
+        .table
+            overflow-x scroll
+            
+        
+.SettingsStudentSchedule
+    h2
+        text-align center
+        color blue
+        margin 10px 10%
+    p
+        text-align center
+        &.stopped
+            color red
+    .currentSemester
+        text-align center
+        margin 20px 0
+        padding 15px
+        border-bottom 1px solid rgba($fifth, .5)
+        border-top 1px solid rgba($fifth, .5)
+        span
+            background gray - 50
+            color white
+            padding 5px
+            border-radius 5px
+            text-transform uppercase
+            font-weight 800
+            &.activated
+                background green - 50
+        div.remove-exclude
+            margin 10px 5px
+            display inline-block
+            background gray - 50
+            color white
+            padding 5px
+            border-radius 5px
+            animation edit-open .2s
+            shadow-level(2)
+            cursor pointer
+    .excludes
+        margin 35px 0
+        background rgba(yellow, .2)
+        padding 5px
+        border-radius 5px
+        label
+            color blue
+    button.declare-sem
+        height 35px
+        background bright-blue
+        color white
+        padding 5px
+        border none 
+        border-radius 3px
+        trans(.3s)
+        &:hover
+            background bright-blue - 100
+            shadow-level(4)
+    .remove-button
+        text-align center
+        .btn-remove, .btn-stop
+            margin 0 3px
+            background red
+            height 35px
+            border transparent
+            color white
+            trans(.3s)
+            &:hover
+                shadow-level(4)
+        .btn-stop
+            background orange
+            &.continue
+                background green - 100
+            
+    .alert
+        display none
+        background rgba(yellow, .53)
+        margin 15px
+        border-radius 15px
+        padding 10px
+        div
+            text-align center
+            color dark-blue
+        &.open-alert
+            display block
+            animation form-open .5s
+        
+.groupsManagement
+    @extend #insertAdditionalUserInfo
+    width 90%
+    margin-left 70px
+    background none
+    shadow-level(0)
+    select
+        width 50%
+        height 40px
+        background $third
+        color white
+        padding 2px
+        border-radius 10px
+        border none
+        font-size 1.1em
+        &:focus, &:active, &:visited
+            border-radius 10px
+    h2.btn-allGroups
+        width 100%
+        margin-top 5%
+        padding 2%
+        font-family $title
+        color white
+        text-shadow 0 0 10px $fifth, 1px 1px 10px blue
+        border none
+        cursor pointer
+        shadow-level(5)
+        &.open
+            trans(.3s)
+            shadow-level(0)
+            background red - 100
+        &:hover
+            trans(.3s)
+            shadow-level(2)
+            background red - 100
+        i
+            float right
+            text-shadow none
+        &:hover i
+            float none
+            animation i-open .2s
+        +below($large)
+            background red + 100
+        +above($large)
+            width 50%
+    .single-course
+        padding 2px
+        shadow-level(2)
+        margin 5px 0
+        background $seven
+        animation edit-open .5s
+        .table
+            +below($med)
+                overflow-x scroll
+        h2
+            text-align center
+            font-family $title
+            color black
+            text-shadow 1px 1px 0 white , -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white
+        h3
+            text-align center
+            font-family $title
+            color white
+        table
+            h4
+                margin 0
+                font-family $title
+                color teal - 100
+                padding 1px
+            tr
+                height 45px
+                margin 0
+                background gray + 100
+            td
+                background gray + 100
+                border-right 1px solid $fifth
+                div.userName
+                    padding 3px 1px
+                    border-bottom 1px solid gray
+                    font-size 1.05em
+                    background rgba(yellow, .5)
+                    cursor pointer
+                    &:last-child
+                        border-bottom none
+                    &:hover
+                        background $seven
+                        color white
+                    &.hide
+                        background green - 150
+                        color white
+                        opacity .6
+                        trans(.5s)
+                        &:hover
+                            opacity 1
+                div.userCount
+                    color teal - 100
+                    padding-top 5px
+                div.weekday
+                    border-bottom 1px solid gray
+                
+            tr.week-size-1 td.week
+                width 100%
+            tr.week-size-2 td.week
+                width 49%
+            tr.week-size-3 td.week
+                width (100/3)%
+            tr.week-size-4 td.week
+                width 24%
+            tr.week-size-5 td.week
+                width 19%
+    +below($large)
+        #selectCourse
+            width 100%
+    +below($med)
+        width 98%
+        margin 1%
+        .single-course
+            animation none
+        shadow-level(0)
+    +below($small)
+        width 100%
+        margin 0
+
+aside.currentUserBar
+    display none
+    fixed right top
+    background rgba(black, .95)
+    height 100%
+    shadow-level(5)
+    div.wrap
+        &.angle
+            display table-cell
+            vertical-align middle
+            cursor pointer
+            height 100%
+            width 50px
+            font-size 4em
+            background $fifth - 20
+            padding 5px
+            &:hover
+                trans(.2s)
+                color white
+        &.barBody
+            vertical-align middle
+            padding 10px
+            display none
+            max-width 550px
+            &.open
+                display table-cell
+                animation studentInfoBar-open .2s
+            h2
+                text-align center
+                color white
+            table
+                th.mainLabel
+                    color white
+                    font-family $title
+                    font-size 1.1em
+                    text-transform uppercase
+                td
+                    border 1px solid gray + 50
+                    background $fifth 
+                    &.check
+                        background green - 100
+                        width 40px
+                        color white
+                tr:hover td.check
+                    background green + 10
+                    color black
+                    trans(.3s)
+            
+    &.open
+        display table
+    +below($med)
+        position static
+        width 100%
+        padding 10px
+        div.wrap
+            &.angle
+                display none
+            &.barBody
+                width 100%
+        
+    
+
+    
+.group
+    h2
+        margin-top 50px
+        font-family $title
+        padding 10px
+        border-top 1px solid rgba(gray, .5)
+        border-bottom 1px solid rgba(gray, .5)
+        color $third
+    .groupsAmount
+        padding 5px
+        background rgba($six)
+        h3
+            text-align center
+        shadow-level(2)
+        .createNewGroup
+            width 30%
+            margin 1%
+            display inline-block
+            border 1px solid $fifth
+            border-radius 10px
+            background white
+            &:hover
+                shadow-level(5)
+                trans(.5s)
+            +below($med)
+                width 98%
+        h4
+            color $first
+            background $fifth
+            margin-top 0
+            padding 10px 5px
+            text-align center
+            border-radius 9px 9px 0 0
+        input, label
+            margin 10px
+            &:hover
+                background rgba(green, .3)
+                trans(.3s)
+        button
+            width 50%
+            margin 10px 24%
+            border none
+            background green - 100
+            color white
+            height 40px
+            border-radius 9px
+            &:hover
+                background green
+                color black
+        +below($med)
+            width 100%
+            margin 5px 0
+
+
+.singleGroup
+    background #cddc39
+    display inline-block
+    width 45%
+    margin 2%
+    border-radius 5px
+    shadow-level(2)
+    &:hover
+        trans(.4s)
+        shadow-level(5)
+    animation edit-open .4s
+    h3
+        background black
+        color white
+        margin-top 0
+        min-height 45px
+        padding 9px
+        border-radius 5px 5px 0 0
+        font-family $title
+        input
+            color black
+            border-radius 2px
+            border none
+    p
+        font-style italic
+        padding 0 2%
+        color $fifth
+        span
+            font-style normal
+            font-family $title
+            font-size 1.1em
+            color black
+        &.students
+            background $fifth
+            color white
+            margin 0
+    div
+        background gray + 40
+        margin 0
+        padding 0
+        ol
+            margin 0
+        li
+            font-size 1.05em
+            height 40px
+            cursor pointer
+            padding 5px
+            &:hover
+                trans(.2s)
+                color white
+                background $fifth
+            button
+                height 100%
+                width 30px
+                float right
+                border none
+                background transparent
+                shadow-level(-1)
+                &:hover
+                    background red
+                    trans(.3s)
+                    shadow-level(1)
+        p.input-user
+            margin-bottom 0
+            border-top 1px solid $fifth
+            padding-top 10px
+            input
+                width 100%
+                border 1px solid gray
+                margin-bottom 10px
+                shadow-level(1)
+                &:hover, &:focus
+                    border 1px solid blue
+            p.namesDropdown
+                display none
+                position absolute
+                background white
+                list-style none
+                margin-top -10px
+                padding 0
+                border-bottom 1px solid gray
+                border-right 1px solid gray
+                border-left 1px solid gray
+                div
+                    background white
+                    padding 5px 30px
+                    cursor pointer
+                    &:hover
+                        background $fifth
+                        color white
+                    &.hide
+                        display none
+                button
+                    border none
+                    background transparent
+                    color blue
+                    margin 2px 10px
+                &.show
+                    display inline-block
+    p.btn 
+        text-align center
+        button
+            background transparent
+            border none
+            color black
+            width 130px
+            height 40px
+            margin 5px
+            shadow-level(-1)
+            &:hover
+                background red
+                color white
+                trans(.4s)
+                shadow-level(4)
+            &.active-group
+                background green
+    &.addGroup
+        background #8BC34A + 20
+        h3
+            text-align center
+        p.lessonDay
+            display none
+            &.open
+                display block
+                animation edit-open .4s
+        p button
+            background green - 100
+            color white
+            &:hover
+                background green
+                color black 
+        select
+            width 100%
+            background gray - 80
+        input
+            width 100%
+        a
+            cursor pointer
+            margin 5px
+            text-align center
+            padding 5px
+            display block
+            &:hover
+                color black  
+    +below($med)
+        width 97%
+        margin 6% 1%
+        
+
+
+
+.stud-enroll
+    width 97%
+    margin 1.5%
+    h2
+        font-family $title
+        text-align center
+        color white
+        text-shadow 1px 1px 5px $fifth
+    .courses
+        width 45%
+        margin 2.3%
+        display inline-block
+        background #00bcd4
+        border-radius 10px
+        shadow-level(2)
+        &:hover
+            trans(.5s)
+            shadow-level(5)
+        p
+            margin 0 3%
+        p.group
+            text-transform uppercase
+            margin-bottom 30px
+            color black
+            text-align right
+            font-family $title
+        p.number
+            margin-left 0
+            margin-right 0
+            padding 3% 2%
+            background black
+            font-size 1.1em
+            font-family $text
+            border-radius 5px 5px 0 0 
+            span
+                z-index 10
+                color white
+        p.name
+            margin-top 30px
+            font-size 1.1em
+            font-weight 800
+            color black
+        table
+            td button
+                margin 0
+                width 40px
+                height 35px
+                background yellow
+                color black
+                shadow-level(2)
+                &:hover
+                    background green - 50
+                    trans(.5s)
+                &.hide-btn
+                    display none
+                &.active
+                    display block
+                    background green - 50
+                    trans(.5s)
+            tr
+                background gray + 100
+            tr:first-child 
+                th:first-child
+                    font-size .8em
+            td
+                border 1px solid black
+                width 50px
+                height 40px
+    .confirmationBar
+        fixed bottom
+        width 60%
+        background black
+        margin 0 19%
+        border-radius 5px 5px 0 0
+        border 1px solid gray - 50
+        border-bottom none
+        shadow-level(6)
+        &.open
+            animation bar-open .2s
+        div.stopped-enroll
+            color red
+        h2
+            margin 5px
+            color $six
+            cursor pointer
+        table
+            tr
+                background gray + 50
+            td
+                border 1px solid $fifth
+                width 15%
+                &.check
+                    background green - 100
+                    color white
+            tr:hover td.check
+                background yellow
+                color black
+            tr:hover th
+                background blue
+            tr:first-child:hover > th
+                background $fifth
+        .aside-table
+            display none
+            padding 10px
+            &.open
+                display block
+        .confirm-btn 
+            text-align center
+            button
+                height 40px
+                width 200px
+                padding 5px
+                font-size 1.2em
+                text-transform uppercase
+                margin 20px 0 5px 0
+                background green - 100
+                color white
+                border transparent
+                &:hover
+                    background green - 50
+                    color black
+                    trans(.3s)
+        .confirmation-info
+            display none
+            color #009688
+            &.show
+                display block
+                animation form-open .3s
+        +below($large)
+            width 90%
+            margin 0 2%
+        +below($med)
+            position: inherit
+            width 100%
+            margin 10px 0
+            border none
+            .aside-table
+                display block
+        +below($small)
+            .aside-table
+                overflow-x scroll
+    +below($large)
+        width 95%
+        margin 2.5%
+        .courses
+            width 90%
+            margin 4%
+    +below($med)
+        width 100%
+        margin 0
+        .confirmationBar
+            padding 2% 0
+            border-radius 0px
+            shadow-level(0)
+    +below($small)
+        .courses
+            width 98%
+            margin 1%
+            shadow-level(0)
+            &:hover
+                shadow-level(0)
+            .table
+                overflow-x scroll
+
+.studentsMarks
+    width 90%
+    height 200px
+    margin 0 3% 0 75px
+    +below($large)
+        width 88%
+    +below($med)
+        width 90%
+        margin 4.5%
+    +below($small)
+        width 98%
+        margin 1%
+    .groupTable
+        background yellow
+        margin 2% 
+        border-radius 10px
+        shadow-level(2)
+        &:hover
+            trans(.5s)
+            shadow-level(5)
+        h2
+            padding 1%
+            font-family $title
+        h3, h4
+            padding 0 1%
+            font-style italic
+            margin 5px
+            color black + 100
+            span
+                font-style normal
+                color black
+        button.open-table
+            width 100%
+            border none
+            background $fifth
+            color white
+            font-size 1.5em
+            &:hover
+                background yellow
+                color black
+                trans(.3s)
+                shadow-level(-1)
+        .content
+            display none
+            &.open
+                display block
+                animation edit-open .4s
+            table
+                width 100%
+                margin 0
+                tr 
+                    background gray + 50
+                    td.score
+                        padding 0
+                        margin 0
+                    &:hover
+                        td
+                            background gray - 30
+                            color white
+                            border-right 1px solid gray + 100
+                            trans(.3s)
+                        td.score
+                            background $third
+                            color white
+                    input
+                        color black
+                        width 80px
+                tr:nth-child(even)
+                    background gray + 70
+            +below($small)
+                overflow-x scroll
+
+
+.usersProfilesList
+    width 80%
+    margin 2% 9%
+    +below($med)
+        width 90%
+        margin 4.5%
+    +below($small)
+        width 98%
+        margin 1%
+    h2
+        width 100%
+        margin-top 5%
+        padding 2%
+        font-family $title
+        color white
+        text-shadow 0 0 10px $fifth, 1px 1px 10px blue
+        display inline-block
+        border none
+        cursor pointer
+        shadow-level(5)
+        &.open
+            trans(.3s)
+            shadow-level(0)
+            background red - 100
+        &:hover
+            trans(.3s)
+            shadow-level(2)
+            background red - 100
+        i
+            float right
+            text-shadow none
+        &:hover i
+            float none
+            animation i-open .2s
+        +below($large)
+            background red + 100
+        +above($large)
+            width 50%
+    .List
+        animation edit-open .4s
+        display none
+        border-radius 5px
+        &.open
+            display block
+    
+    .profileList
+        width 60%
+        margin 2%
+        display table
+        shadow-level(3)
+        background $first + 20
+        color $fourth - 50
+        text-align center
+        .content, .status
+            display table-cell
+        .status
+            margin 0
+            font-size 1em
+            font-family $text
+            font-weight 600
+            background rgba(green - 150, .8)
+            color white
+            width 10%
+        .content
+            padding 1.5%
+            p
+                float left
+                margin 0
+                padding 0
+                color gray
+        &:hover
+            shadow-level(5)
+            trans(.5s)
+        +below($med)
+            width 96%
+    .searchBox
+        display table
+        width 50%
+        margin-left 2%
+        &:hover
+            i
+                background bright-blue + 20
+                color black
+                trans(.3s)
+        input
+            width 100%
+            border 1px solid $first - 50
+            height 40px
+            display table-cell
+        i
+            display table-cell
+            width 40px
+            text-align center
+            border 1px
+            background $fifth
+            color white
+            font-size 1.1em
+        +below($med)
+            width 100%
+            margin 0
+            
+        
+    
+
+table.regr-permition
+    tr
+        background none
+        background $first
+        font-size 1.3em
+        margin 5px
+        &.permited
+            background green - 50
+            color white
+        &.denied
+            background red - 20
+            color white
+        button
+            font-size 1em
+            width 120px
+            height 35px
+            color white
+            &.deny
+                background red - 50
+                white
+                &:hover
+                    background red
+                    color black
+            &.permit
+                background green - 50
+                &:hover
+                    background green
+                    color black
+            +below($med)
+                display block
+                width 60%
+                margin 3px auto
+                
+.user-profile
+    width 50%
+    margin 2% 24%
+    +below($large)
+        width 60%
+        margin 2% 19%
+    +below($med)
+        width 70%
+        margin 2% 14%
+    +below($small)
+        width 98%
+        margin 1%
+    section
+        background white
+        padding 10px
+        margin 20px 0
+        border-radius 20px 0 20px 20px
+        shadow-level(3)
+        &.registration-2
+            @extend #insertAdditionalUserInfo
+            width 100%
+            margin 0
+            button.btn.btn-primary
+                width 30%
+                &.autoform-remove-item
+                    width 25px
+                &.autoform-add-item
+                    width 100%
+    li
+        margin 1%
+    p
+        font-family $header
+        font-size 1.1em
+        font-weight 500
+        color $fifth    
+        margin-left 20px
+        font-style italic
+        span
+            font-family $third
+            font-weight 600
+            color $third - 50
+            font-style normal
+            &.label
+                font-style normal
+                font-family $header
+                color $fifth
+                font-weight 500
+        &.main
+            margin-top 10px
+            padding-right 50px
+            border-bottom 1px solid gray
+            font-style none
+            color gray
+            font-size 2em
+            text-align right
+            font-family $title
+    p, div
+        i
+            display none
+            font-size .8em
+            color yellow - 80
+        &:hover
+            i
+                display inline-block
+        form
+            color black
+            button
+                border 1px solid gray
+                background transparent
+                &:hover
+                    trans(.4s)
+                    background green - 80
+                    color white
+    span.confirmed
+        display block
+        text-align right
+        font-style italic
+        color teal - 50
+        font-size 1em
+        padding 5px
+        border-top 1px solid gray
+        &:hover
+            &:before
+                content 'You are unable to edit your profile, '
+                color gray
+                margin-right 5px
+                animation form-open .4s
+    button.btn-profile
+        width (91/2)%
+        margin 1.5%
+        height 40px
+        border transparent
+        &:first-child
+            border-radius 10px 0 0 10px
+        &:hover
+            trans(.3s)
+            shadow-level(2)
+        +below($med)
+            width 97%
+            border-radius 10px
+        &.remove-user
+            background red - 10
+            color white
+        &.update-profile
+            background yellow - 50
+            color white
+        &.admit-user
+            background gray - 10
+            color white
+            border-radius 0 10px 10px 0
+            &.confirm
+                background green - 100
+            
+            
+
+
+aside.userProfileEdit
+    width 80%
+    margin 1% 9%
+    +below($med)
+        width 97%
+        margin 1%
+        overflow-x scroll
+    tr
+        height 50px
+        background gray + 100
+        &:nth-child(even)
+            background gray + 50
+        &:hover td
+            background gray - 60
+            color white
+            &.score
+                background red - 80
+            button
+                color white
+    form.tr
+        display table-row
+        background $fifth
+        button
+            color white
+            &:hover
+                background green - 50
+.user-groups
+    width 80%
+    margin 1% 9%
+    +below($med)
+        width 97%
+        margin 1%
+    h2
+        color blue
+        text-align center
+    ol
+        li
+            cursor text          
+                
+
+#adnsu-logo
+    display block
+    margin 3px auto
+    padding 2px
+    background rgba(34, 34, 34, 0.44);
+    box-shadow 0px 0px 10px @background
+    width 25%
+    +above($med)
+        position absolute
+        width 15%
+        fixed right bottom
+        margin 5px
+
+a.js-stud-id
+    cursor pointer
+
+@keyframes studentInfoBar-open
+    0%
+        width 0
+        opacity 0
+    15%
+        width 50px
+        opacity 0
+    30%
+        width 100px
+        opacity 0
+    45%
+        width 200px
+        opacity 0
+    60%
+        width 300px
+        opacity 0
+    75%
+        width 400px
+        opacity 0
+    90%
+        width 500px
+        opacity .5
+    100%
+        opacity 1
+        width 550px
+
+@keyframes studentInfoBar-close
+    100%
+        width 0
+    90%
+        width 100px
+    75%
+        width 200px
+    60%
+        width 300px
+    45%
+        width 400px
+    30%
+        width 450px
+    15%
+        width 500px
+    0%
+        width 550px
+        
+@keyframes form-open
+    0%
+        height 0%
+        opacity 0
+    25%
+        height 25%
+        opacity .25
+    50%
+        height 50%
+        opacity .5
+    75%
+        height 75%
+        opacity .75
+    100%
+        height 100%
+        opacity 1
+        
+@keyframes bar-open
+    0%
+        height 0%
+    25%
+        height 20%
+    50%
+        height 30%
+    75%
+        height 40%
+    100%
+        height 50%
+        
+
+@keyframes edit-open
+    0%
+        transform translateX(30px)
+    100%
+        transform translateX(0)
+        
+@keyframes i-open
+    0%
+        transform translateX(200px)
+    25%
+        transform translateX(150px)
+    50%
+        transform translateX(100px)
+    75%
+        transform translateX(50px)
+    100%
+        transform translateX(0)
+        

@@ -1,0 +1,154 @@
+<template name="Curriculum">
+	<h1>Curriculum</h1>
+	<section class="curriculumMenu">
+	{{#if Template.subscriptionsReady}}
+		<div class="mainCores" id="mainCores">
+		<h2 class="open-main {{#if OpenMain}} open {{/if}}">Main Cores 
+		{{#if OpenMain}}
+			<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+		{{else}}
+			<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+		{{/if}}
+		</h2>
+		<div class="capture {{#if OpenMain}} open {{/if}}">
+				<div class="core" id="cornerstone">
+					<h3>Cornerstone Core</h3>
+					<div class="table">
+						<table>
+							<tr>
+								<th>Number</th>
+								<th>Label</th>
+								<th>Hours</th>
+								<th>Prerequisites</th>
+								<th>Teachers & days</th>
+								<th>Manage</th>
+							</tr>
+						
+							{{#each cornerCourse}}
+								{{> CornerstoneTable}}
+							{{/each}}
+						</table>
+					</div>
+					<div class="table-button">
+						<button class="js-corner btn-table">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+						</button>
+						<div class="id-form {{#if $.Session.get 'showAddCornerstoneForm'}} open {{else}} close {{/if}}">
+							{{> quickForm schema="Cornerstone" id="AddNewCornerstone" type="method" meteormethod="CourseList"}}
+						</div>
+					</div>
+				</div> <!-- // core -->
+				<div class="core" id="functional">
+					<h3>Functional Core</h3>
+					<div class="table">
+						<table>
+							<tr>
+								<th>Number</th>
+								<th>Label</th>
+								<th>Hours</th>
+								<th>Prerequisites</th>
+								<th>Teachers & days</th>
+								<th>Manage</th>
+							</tr>
+							{{#each functionCourse}}
+								{{> FunctionalTable}}
+							{{/each}}
+						</table>
+					</div>
+					<div class="table-button">
+						<button class="js-func btn-table">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+						</button>
+						<div class="id-form {{#if $.Session.get 'showAddFunctionalForm'}} open {{else}} close {{/if}}">
+							{{> quickForm schema="Functional" id="AddNewFunctional" type="method" meteormethod="CourseList"}}
+						</div>
+					</div>
+				</div> <!-- // core -->
+			</div>
+		</div> <!-- / mainCores -->
+
+
+		<div class="electiveCores" id="electiveCores">
+		<h2 class="open-elective {{#if OpenElective}} open {{/if}}">Elective Cores
+		{{#if OpenElective}}
+			<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+		{{else}}
+			<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+		{{/if}}		</h2>
+		<div class="capture {{#if OpenElective}} open {{/if}}">
+			<div class="elective-buttons">
+				<button class="elective {{#if $.Session.get 'showAddEllectiveForm'}} active {{/if}}">
+				<i class="fa fa-pencil-square" aria-hidden="true"></i>
+				Manage Cores
+				</button>
+				<button class="js-elective {{#if $.Session.get 'showAddEllectiveSubjectForm'}} active {{/if}}">
+				<i class="fa fa-plus" aria-hidden="true"></i>
+				Add Subject
+				</button>
+			</div>
+			<div class="id-form {{#if $.Session.get 'showAddEllectiveForm'}} open {{else}} close {{/if}}">
+				{{> quickForm schema="NewSpecialisation" id="AddNewEllective" type="method" meteormethod="SettingsList"}}
+				<table>
+					<tr>
+						<th>
+							Specialisation
+							<div>(click label to edit)</div>
+						</th>
+						<th>
+							Selected specialisation would be deleted. 
+							<div>Related subjects would be deleted as well</div>
+						</th>
+					</tr>
+					{{#each specialisation}}
+						<tr>
+							<td>
+								<h3>
+									{{> editableText collection="settings" field="name"}}
+								</h3>
+							</td>
+							<td>
+								<button class="remove-specialisation">REMOVE TOTALLY</button>
+							</td>
+						</tr>
+					{{/each}}
+				</table>
+			</div>
+			<div class="id-form {{#if $.Session.get 'showAddElectiveSubjectForm'}} open {{else}} close {{/if}}">
+				{{> quickForm schema="Electives" id="AddNewElective" type="method" meteormethod="CourseList"}}
+			</div>
+
+				{{#each specialisation}}
+					<div class="core" id="{{_id}}">
+						<h3>{{name}}</h3>
+						<div class="table">
+							<table>
+								<tr>
+									<th>Number</th>
+									<th>Label</th>
+									<th>Hours</th>
+									<th>Prerequisites</th>
+									<th>Teachers & days</th>
+									<th>Manage</th>
+								</tr>
+								{{#each electiveCourse this}}
+									{{> ElectiveTable}}
+								{{/each}}
+							</table>
+						</div>
+					</div> <!-- // core -->
+				{{/each}}
+			</div>  <!-- / electiveCores -->
+		</div> <!-- / capture -->
+		{{> DisabledTable}}
+	{{else}}
+		<div class='preloader'>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	{{/if}}
+	</section>
+</template>

@@ -1,0 +1,38 @@
+<template name="UserGroups">
+	<h1>Groups</h1>
+	<div class="user-groups">
+		{{#if Template.subscriptionsReady}}
+			{{#if userNotInGroup}}
+				<h2><i class="fa fa-info-circle"></i> No groups to show!</h2>
+			{{else}}
+				{{#each groups}}
+					<div class="singleGroup">
+						<h3><span>{{groupName}}</span></h3>
+						<p>Subject: <span>{{courseInfo subject}}</span></p>
+						<p>Hours: <span>{{cHours}}h</span></p>
+						<p>Teacher: <span><a href="/profile-teacher/{{teacherId teacher.id}}">{{teacher.fullName}}</a></span></p>
+						<p>Lessons' day: <span>{{weekDay day}}</span></p>
+						<p>Established: <span>{{date createdAt}}</span></p>
+						<p class="students">Groupmates {{students.length}}</p>
+						<div class="list">
+							<ol>
+								{{#each students}}
+									<li class="js-showStudent">{{fullName}}</li>
+								{{/each}}
+							</ol>
+						</div>
+					</div>
+				{{/each}}
+			{{/if}}
+		{{else}}
+			<div class='preloader'>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		{{/if}}
+	</div>
+</template>

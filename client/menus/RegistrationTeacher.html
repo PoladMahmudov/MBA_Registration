@@ -1,0 +1,22 @@
+<template name="RegistrationTeacher">
+	<section class="insertTeacherInfo">
+		<h1>Teacher Registration</h1>
+		{{#if Template.subscriptionsReady}}
+			<div class="teacher-form">
+				 {{> quickForm schema="RegistrationTeacher" id="RegistrationTeacher" type="method" meteormethod="insertProfile"}}
+			</div>
+		{{else}}
+				<div class='preloader'>`
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+		{{/if}}
+	</section>
+</template>
+
+
+<!-- {{> quickForm collection="Teachers" id="RegistrationTeacher" type="insert"}} -->

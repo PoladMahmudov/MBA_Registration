@@ -1,0 +1,46 @@
+<template name="Header">
+	<nav>
+		<div class="not-collapsed">
+			<img src="/ADNSU-logo.png" alt="logo">
+			<h2>
+				{{#if isInRole 'admin'}}
+					<span>Logged as an admin</span>
+				{{else}}
+					{{#if isInRole 'teacher'}}
+						<a href="/profile-teacher/{{id}}" class="{{isActiveRoute 'profile-teacher'}}">Profile</a>
+					{{else}}
+						<a href="/profile/{{id}}" class="{{isActiveRoute 'profile'}}">Profile</a>
+						<a href="/curriculum" class="{{isActiveRoute 'curriculum'}}">Curriculum</a>
+						{{#if temporary}}
+							<a href="/enroll" class="{{isActiveRoute 'enroll'}}">Enroll</a>
+						{{/if}}
+					{{/if}}
+				{{/if}}
+				<button class="btn-primary js-logOut"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+			</h2>
+			<button class="toggle-nav"><i class="fa fa-bars" aria-hidden="true"></i></button>
+		</div>
+		{{#if $.Session.get 'collapsed'}}
+			<div class="collapsed {{#if $.Session.get 'collapsed'}}open{{/if}}">
+				<h2>
+					<button class="toggle-back-nav"><i class="fa fa-times" aria-hidden="true"></i></button>
+					{{#if isInRole 'admin'}}
+						<button class="js-logOut"><i class="fa fa-sign-out" aria-hidden="true"></i> <span>Log out</span></button>
+					{{else}}
+						{{#if isInRole 'teacher'}}
+							<a href="/profile-teacher/{{id}}" class="clicked-adress {{isActiveRoute 'profile-teacher'}}">Profile</a>
+							<button class="js-logOut"><i class="fa fa-sign-out" aria-hidden="true"></i> <span>Log out</span></button>
+						{{else}}
+							<a href="/profile/{{id}}" class="clicked-adress {{isActiveRoute 'profile'}}">Profile</a>
+							<a href="/curriculum" class="clicked-adress {{isActiveRoute 'curriculum'}}">Curriculum</a>
+							{{#if temporary}}
+								<a href="/enroll" class="clicked-adress {{isActiveRoute 'enroll'}}">Enroll</a>
+							{{/if}}
+							<button class="js-logOut"><i class="fa fa-sign-out" aria-hidden="true"></i> <span>Log out</span></button>
+						{{/if}}
+					{{/if}}
+				</h2>
+			</div>
+		{{/if}}
+	</nav>
+</template>

@@ -1,0 +1,9 @@
+<template name="RegInfo">
+	<aside>
+        {{#if $.Session.get 'reg-info'}}
+          <i class="fa fa-info-circle reg-permited"></i>
+        {{else}}
+          <i class="fa fa-info-circle reg-denied"></i>
+        {{/if}}
+      </aside>
+</template>

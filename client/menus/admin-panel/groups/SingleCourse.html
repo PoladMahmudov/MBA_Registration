@@ -1,0 +1,38 @@
+<template name="SingleCourse">
+	{{#if showCourse}}
+		<div class="single-course">
+			<h2>{{cName}}</h2>
+			<h3>{{cHours}} hours</h3>
+			{{#each teacher}}
+			<div class="table">
+				<table>
+					<tr>
+						<th colspan="{{days.length}}">{{fullName}}</th>
+					</tr>
+					<tr class="week-size-{{days.length}}">
+						{{#each week}}
+							<td class="week">
+								<div class="weekday">
+									<h4>{{weekday}}</h4>
+								</div>
+								{{#each student}}
+									<div class="userName {{#if selectedToGroup}} hide {{/if}}">
+										{{#if selectedToGroup}}
+											<i class="fa fa-check"></i>
+										{{/if}}
+										{{name}}
+									</div>
+								{{/each}}
+								<div class="userCount">{{student.length}}</div>
+							</td>
+						{{/each}}
+					</tr>
+				</table>
+			</div>
+			{{/each}}
+		</div>
+
+		{{> CreateGroup}}
+		
+	{{/if}}
+</template>

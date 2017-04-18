@@ -1,0 +1,98 @@
+<template name="CurriculumStudent">
+	<h1>Curriculum</h1>
+	<div class="userSchedule">
+		{{#if Template.subscriptionsReady}}
+			<div class="table">
+				<table>
+					<tr class="coreLabel">
+						<th colspan="5">
+							Cornerstone core
+						</th>
+					</tr>
+					<tr>
+						<th>Number</th>
+						<th>Label</th>
+						<th>Hours</th>
+						<th>Prerequisites</th>
+						<th>Score</th>
+					</tr>
+					{{#each cornerstone}}
+						<tr class="{{#if $gt score '50'}} completed {{/if}}" >
+							<td>{{cNumber}}</td>
+							<td>{{cName}} 
+								<div class="{{#if $gt score '50'}} completed {{else}} notcompleted {{/if}}">Completed</div>
+							</td>
+							<td>{{cHours}} hours</td>
+							<td></td>
+							<td>{{score}}</td>
+						</tr>
+					{{/each}}
+					<tr class="coreLabel">
+						<th colspan="5">
+							Functional core
+						</th>
+					</tr>
+					<tr>
+						<th>Number</th>
+						<th>Label</th>
+						<th>Hours</th>
+						<th>Prerequisites</th>
+						<th>Score</th>
+					</tr>
+					{{#each functional}}
+						<tr class="{{#if $gt score '50'}} completed {{/if}}">
+							<td>{{cNumber}}</td>
+							<td>{{cName}}
+								<div class="{{#if $gt score '50'}} completed {{else}} notcompleted {{/if}}">Completed</div>
+							</td>
+							<td>{{cHours}} hours</td>
+							<td class="teach">
+								{{#each Prerequisites}}
+									<div>{{docs id}}</div>
+								{{/each}}
+							</td>
+							<td>{{score _id}}</td>
+						</tr>
+					{{/each}}
+					<tr class="coreLabel">
+						<th colspan="5">
+							<div>Capstone (Electives)</div>
+							<div><span class="special">"{{special}}"</span></div>
+						</th>
+					</tr>
+					<tr>
+						<th>Number</th>
+						<th>Label</th>
+						<th>Hours</th>
+						<th>Prerequisites</th>
+						<th>Score</th>
+					</tr>
+					{{#each elective}}
+						<tr class="{{#if $gt score '50'}} completed {{/if}}">
+							<td>{{cNumber}}</td>
+							<td>{{cName}}
+								<div class="{{#if $gt score '50'}} completed {{else}} notcompleted {{/if}}">Completed</div>
+							</td>
+							<td>{{cHours}} hours</td>
+							<td class="teach">
+								{{#each Prerequisites}}
+									<div>{{docs id}}</div>
+								{{/each}}
+							</td>
+							<td>{{score _id}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</div>
+		{{else}}
+			<div class='preloader'>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		{{/if}}
+	</div>
+</template>

@@ -1,0 +1,21 @@
+<template name="SideBar">
+	{{#if isInRole 'admin'}}
+		<nav class="side-nav">
+			<a href="/admin/users" class="{{isActiveRoute 'users'}}"><i class="fa fa-user" aria-hidden="true"></i>
+				<span>Users</span>
+			</a>
+			<a href="/admin/curriculum" class="{{isActiveRoute 'Curriculum-admin'}}"><i class="fa fa-table" aria-hidden="true"></i>
+				<span>Curriculum</span>
+			</a>
+			<a href="/admin/groups" class="{{isActiveRoute 'Groups'}}"><i class="fa fa-users" aria-hidden="true"></i>
+				<span>Groups Management</span>
+			</a>
+			<a href="/admin/mark-students" class="{{isActiveRoute 'Mark students'}}"><i class="fa fa-star" aria-hidden="true"></i>
+				<span>Mark students</span>
+			</a>
+			<a href="/admin/settings" class="{{isActiveRoute 'Settings'}}"><i class="fa fa-cog" aria-hidden="true"></i>
+				<span>Settings</span>
+			</a>
+		</nav>
+	{{/if}}
+</template>

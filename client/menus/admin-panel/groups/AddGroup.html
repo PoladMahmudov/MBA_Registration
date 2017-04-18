@@ -1,0 +1,33 @@
+<template name="AddGroup">
+	<div class="singleGroup addGroup">
+		<form id="add-new-group-manually">
+			<h3>
+				<label for="groupName">ADD GROUP MANUALLY</label>
+				<input type="text" id="groupName" placeholder="Group label">
+			</h3>
+			<p>Subject: <span>{{cNumber}} - {{cName}}</span></p>
+			<p>Hours: <span>{{cHours}}h</span></p>
+			<p>
+				<label for="teachers">Teacher:</label>
+				<select id="teacher" required> 
+					<option value=''>(Select one)</option>
+					{{#each Teachers}}
+						<option value="{{id}}">{{fullName id}}</option>
+					{{/each}}
+				</select>
+
+				<a class="show-all-teachers">Show all teachers</a>
+			</p>
+			<p class="lessonDay {{#if $.Session.get 'TeacherId'}} open {{/if}}">
+				<label for="lessonDay">Lessons' day:</label>
+				<select id="lessonDay" required> 
+					{{#each days}}
+						<option value="{{num}}">{{day}}</option>
+					{{/each}}
+				</select>
+			</p>
+			<p class="students">Create new group</p>
+			<p class="btn"><button type="submit">Create</button></p>
+		</form>
+	</div>	
+</template>
